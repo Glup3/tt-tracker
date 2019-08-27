@@ -16,12 +16,89 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int score1 = 0;
+  int score2 = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('TT Tracker'),
+      ),
+      body: Container(
+        child: Stack(
+          children: <Widget>[
+            Column(
+              children: <Widget>[
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.all(50),
+                    child: DragTarget(
+                      builder: (context, data, rejectedData) {
+                        return Container(
+                          color: Colors.red,
+                          child: Center(
+                            child: Text(score1.toString()),
+                          ),
+                        );
+                      },
+                      onAccept: (data) {
+                        setState(() {
+                          score1++;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.all(50),
+                    child: DragTarget(
+                      builder: (context, data, rejectedData) {
+                        return Container(
+                          color: Colors.blue,
+                          child: Center(
+                            child: Text(score2.toString()),
+                          ),
+                        );
+                      },
+                      onAccept: (data) {
+                        setState(() {
+                          score2++;
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Center(
+              child: Draggable(
+                child: Container(
+                  height: 50,
+                  width: 50,
+                  color: Colors.blue,
+                ),
+                feedback: Container(
+                  height: 50,
+                  width: 50,
+                  color: Colors.blue[200],
+                ),
+                childWhenDragging: Container(
+                  height: 50,
+                  width: 50,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
