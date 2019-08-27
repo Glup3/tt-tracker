@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  await SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.landscapeRight]);
+
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -34,11 +40,11 @@ class _HomePageState extends State<HomePage> {
       body: Container(
         child: Stack(
           children: <Widget>[
-            Column(
+            Row(
               children: <Widget>[
                 Expanded(
                   child: Container(
-                    padding: EdgeInsets.all(50),
+                    // padding: EdgeInsets.all(50),
                     child: DragTarget(
                       builder: (context, data, rejectedData) {
                         return Container(
@@ -58,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Expanded(
                   child: Container(
-                    padding: EdgeInsets.all(50),
+                    // padding: EdgeInsets.all(50),
                     child: DragTarget(
                       builder: (context, data, rejectedData) {
                         return Container(
@@ -83,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                 child: Container(
                   height: 50,
                   width: 50,
-                  color: Colors.blue,
+                  color: Colors.purple,
                 ),
                 feedback: Container(
                   height: 50,
@@ -91,9 +97,10 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.blue[200],
                 ),
                 childWhenDragging: Container(
-                  height: 50,
-                  width: 50,
-                  color: Colors.grey,
+                  height: 100,
+                  width: 100,
+                  color: Colors.white,
+                  child: Icon(Icons.cancel, color: Colors.red),
                 ),
               ),
             ),
