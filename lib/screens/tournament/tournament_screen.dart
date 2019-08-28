@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tt_tracker/theme/custom_theme.dart';
-import 'package:tt_tracker/widgets/add_user_dialog.dart';
+import 'package:tt_tracker/widgets/dialogs/add_user_dialog.dart';
 import 'package:tt_tracker/widgets/default_app_bar.dart';
 
 class TournamentScreen extends StatelessWidget {

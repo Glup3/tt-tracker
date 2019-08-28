@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tt_tracker/theme/custom_theme.dart';
 import 'package:tt_tracker/widgets/default_app_bar.dart';
+import 'package:tt_tracker/widgets/dialogs/confirmation_dialog.dart';
 import 'package:tt_tracker/widgets/triangle_button.dart';
 
 class PlayMenuScreen extends StatelessWidget {
@@ -42,7 +43,16 @@ class PlayMenuScreen extends StatelessWidget {
               turns: 2,
               child: Icon(FontAwesomeIcons.undo, size: 50),
               onTap: () {
-                // TODO restart Season Dialog
+                showDialog<void>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return ConfirmationDialog(
+                      title: 'Are you sure?',
+                      text: 'Start a new season (ends current one)',
+                      okayFunction: () {},
+                    );
+                  },
+                );
               },
             ),
             TriangleButton(
