@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tt_tracker/screens/match_history/match_history_screen.dart';
 import 'package:tt_tracker/screens/play_menu/play_menu_screen.dart';
 import 'package:tt_tracker/screens/tournament/tournament_screen.dart';
 import 'package:tt_tracker/theme/custom_theme.dart';
@@ -42,8 +43,11 @@ class HomeScreen extends StatelessWidget {
                 TriangleButton(
                   size: triangleSize,
                   turns: 2,
-                  onTap: () {},
                   child: Icon(FontAwesomeIcons.trophy),
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MatchHistoryScreen())),
                 ),
               ],
             ),
