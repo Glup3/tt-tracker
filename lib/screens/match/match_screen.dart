@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tt_tracker/screens/match/widgets/player_field.dart';
 import 'package:tt_tracker/theme/custom_theme.dart';
 import 'package:tt_tracker/widgets/default_app_bar.dart';
 
@@ -23,7 +25,7 @@ class _MatchScreenState extends State<MatchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: DefaultAppBar(title: 'Warrior Selection'),
+      appBar: DefaultAppBar(title: 'VS'),
       body: Container(
         color: CustomTheme.of(context).backgroundColor,
         child: Stack(
@@ -31,41 +33,29 @@ class _MatchScreenState extends State<MatchScreen> {
             Row(
               children: <Widget>[
                 Expanded(
-                  child: Container(
-                    child: DragTarget(
-                      builder: (context, data, rejectedData) {
-                        return Container(
-                          color: Colors.red,
-                          child: Center(
-                            child: Text(score1.toString()),
-                          ),
-                        );
-                      },
-                      onAccept: (data) {
-                        setState(() {
-                          score1++;
-                        });
-                      },
-                    ),
+                  child: PlayerField(
+                    playerName: widget.player1,
+                    score: score1.toString(),
+                    onAccept: () {
+                      setState(() {
+                        score1++;
+                      });
+                    },
                   ),
                 ),
+                Container(
+                  width: 2,
+                  color: CustomTheme.of(context).onBackgroundColor,
+                ),
                 Expanded(
-                  child: Container(
-                    child: DragTarget(
-                      builder: (context, data, rejectedData) {
-                        return Container(
-                          color: Colors.blue,
-                          child: Center(
-                            child: Text(score2.toString()),
-                          ),
-                        );
-                      },
-                      onAccept: (data) {
-                        setState(() {
-                          score2++;
-                        });
-                      },
-                    ),
+                  child: PlayerField(
+                    playerName: widget.player2,
+                    score: score2.toString(),
+                    onAccept: () {
+                      setState(() {
+                        score2++;
+                      });
+                    },
                   ),
                 ),
               ],
@@ -73,20 +63,30 @@ class _MatchScreenState extends State<MatchScreen> {
             Center(
               child: Draggable(
                 child: Container(
-                  height: 50,
-                  width: 50,
-                  color: Colors.purple,
+                  color: CustomTheme.of(context).surfaceColor,
+                  child: Icon(
+                    FontAwesomeIcons.tableTennis,
+                    color: CustomTheme.of(context).onSurfaceColor,
+                    size: 50,
+                  ),
                 ),
                 feedback: Container(
-                  height: 50,
-                  width: 50,
-                  color: Colors.blue[200],
+                  // color: CustomTheme.of(context).surfaceColor,
+                  color: Colors.transparent,
+                  child: Icon(
+                    FontAwesomeIcons.tableTennis,
+                    color: CustomTheme.of(context).onSurfaceColor,
+                    size: 50,
+                  ),
                 ),
                 childWhenDragging: Container(
-                  height: 50,
-                  width: 50,
-                  color: Colors.white,
-                  child: Icon(Icons.cancel, color: Colors.red),
+                  padding: EdgeInsets.all(10),
+                  color: CustomTheme.of(context).surfaceColor,
+                  child: Icon(
+                    FontAwesomeIcons.ban,
+                    color: CustomTheme.of(context).errorColor,
+                    size: 80,
+                  ),
                 ),
               ),
             ),
