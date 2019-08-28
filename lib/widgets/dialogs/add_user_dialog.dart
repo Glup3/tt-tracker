@@ -13,16 +13,16 @@ class _AddUserDialogState extends State<AddUserDialog> {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: CustomTheme.of(context).surfaceColor,
-      content: SingleChildScrollView(
-        child: ListBody(
-          children: <Widget>[
-            TextField(
+      content: Row(
+        children: <Widget>[
+          Expanded(
+            child: TextField(
               cursorColor: CustomTheme.of(context).primaryColor1,
               style: TextStyle(
                 color: CustomTheme.of(context).onSurfaceColor,
               ),
               decoration: InputDecoration(
-                hintText: 'Add player name',
+                hintText: 'Player name',
                 hintStyle: TextStyle(color: CustomTheme.of(context).hintColor),
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -40,25 +40,23 @@ class _AddUserDialogState extends State<AddUserDialog> {
               onChanged: (name) => playerName = name,
               onSubmitted: (name) => _addPlayer(name),
             ),
-          ],
-        ),
-      ),
-      actions: <Widget>[
-        FlatButton(
-          child: Text(
-            'Add',
-            style: TextStyle(
-              color: CustomTheme.of(context).primaryColor1,
-            ),
           ),
-          onPressed: () => _addPlayer(playerName),
-        ),
-      ],
+          FlatButton(
+            child: Text(
+              'Add',
+              style: TextStyle(
+                color: CustomTheme.of(context).primaryColor1,
+              ),
+            ),
+            onPressed: () => _addPlayer(playerName),
+          ),
+        ],
+      ),
     );
   }
 
   void _addPlayer(String name) {
-    if (name.isNotEmpty) {
+    if (name != null) {
       print(name);
       // TODO add GraphQL Mutation
       Navigator.pop(context);
