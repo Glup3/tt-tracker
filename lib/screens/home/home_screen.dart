@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tt_tracker/screens/play_menu/play_menu_screen.dart';
 import 'package:tt_tracker/screens/tournament/tournament_screen.dart';
 import 'package:tt_tracker/theme/custom_theme.dart';
 import 'package:tt_tracker/widgets/default_app_bar.dart';
@@ -19,7 +20,8 @@ class HomeScreen extends StatelessWidget {
             TriangleButton(
               turns: 2,
               child: Icon(FontAwesomeIcons.play),
-              onTap: () {},
+              onTap: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => PlayMenuScreen())),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
