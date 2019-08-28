@@ -37,9 +37,9 @@ class _MatchScreenState extends State<MatchScreen> {
                   child: PlayerField(
                     playerName: widget.player1,
                     score: score1.toString(),
-                    onAccept: () {
+                    changeScore: (newScore) {
                       setState(() {
-                        score1++;
+                        score1 = newScore;
                       });
                       _checkWinner();
                     },
@@ -53,9 +53,9 @@ class _MatchScreenState extends State<MatchScreen> {
                   child: PlayerField(
                     playerName: widget.player2,
                     score: score2.toString(),
-                    onAccept: () {
+                    changeScore: (newScore) {
                       setState(() {
-                        score2++;
+                        score2 = newScore;
                       });
                       _checkWinner();
                     },

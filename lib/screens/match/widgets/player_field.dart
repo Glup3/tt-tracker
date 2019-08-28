@@ -4,13 +4,13 @@ import 'package:tt_tracker/theme/custom_theme.dart';
 class PlayerField extends StatelessWidget {
   final String playerName;
   final String score;
-  final Function onAccept;
+  final Function changeScore;
 
   const PlayerField({
     Key key,
     @required this.playerName,
     @required this.score,
-    @required this.onAccept,
+    @required this.changeScore,
   }) : super(key: key);
 
   @override
@@ -34,22 +34,32 @@ class PlayerField extends StatelessWidget {
           color: CustomTheme.of(context).onBackgroundColor,
         ),
         Expanded(
-          child: Container(
-            child: DragTarget(
-              builder: (context, data, rejectedData) {
-                return Container(
-                  color: CustomTheme.of(context).surfaceColor,
-                  child: Center(
-                    child: Text(
-                      score,
-                      style: TextStyle(
-                          color: CustomTheme.of(context).onSurfaceColor,
-                          fontSize: 50),
-                    ),
-                  ),
-                );
+          child: Material(
+            color: CustomTheme.of(context).surfaceColor,
+            child: InkWell(
+              // splashColor: CustomTheme.of(context).errorColor,
+              highlightColor: CustomTheme.of(context).errorColor,
+              onLongPress: () {
+                int newScore = int.parse(score) - 1;
+                changeScore(newScore >= 0 ? newScore : 0);
               },
-              onAccept: (data) => onAccept(),
+              child: Container(
+                child: DragTarget(
+                  builder: (context, data, rejectedData) {
+                    return Container(
+                      child: Center(
+                        child: Text(
+                          score,
+                          style: TextStyle(
+                              color: CustomTheme.of(context).onSurfaceColor,
+                              fontSize: 50),
+                        ),
+                      ),
+                    );
+                  },
+                  onAccept: (data) => changeScore(int.parse(score) + 1),
+                ),
+              ),
             ),
           ),
         ),
