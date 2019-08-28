@@ -13,6 +13,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
         title,
         style: TextStyle(fontSize: 30),
       ),
+      centerTitle: true,
       backgroundColor: CustomTheme.of(context).backgroundColor,
     );
   }
