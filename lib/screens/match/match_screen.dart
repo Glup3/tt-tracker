@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tt_tracker/screens/match/widgets/player_field.dart';
+import 'package:tt_tracker/screens/winner/winner_screen.dart';
 import 'package:tt_tracker/theme/custom_theme.dart';
 import 'package:tt_tracker/widgets/default_app_bar.dart';
 
@@ -40,6 +41,7 @@ class _MatchScreenState extends State<MatchScreen> {
                       setState(() {
                         score1++;
                       });
+                      _checkWinner();
                     },
                   ),
                 ),
@@ -55,6 +57,7 @@ class _MatchScreenState extends State<MatchScreen> {
                       setState(() {
                         score2++;
                       });
+                      _checkWinner();
                     },
                   ),
                 ),
@@ -94,5 +97,27 @@ class _MatchScreenState extends State<MatchScreen> {
         ),
       ),
     );
+  }
+
+  void _checkWinner() {
+    if (score1 < 11 && score2 < 11) {
+      return;
+    }
+
+    if (score1 >= score2 + 2) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => WinnerScreen(name: widget.player1)));
+      return;
+    }
+
+    if (score2 >= score1 + 2) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => WinnerScreen(name: widget.player2)));
+      return;
+    }
   }
 }

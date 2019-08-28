@@ -7,6 +7,8 @@ import 'package:tt_tracker/widgets/default_app_bar.dart';
 import 'package:tt_tracker/widgets/triangle_button.dart';
 
 class HomeScreen extends StatelessWidget {
+  final double triangleSize = 150;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,6 +20,7 @@ class HomeScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             TriangleButton(
+              size: triangleSize,
               turns: 2,
               child: Icon(FontAwesomeIcons.play),
               onTap: () => Navigator.push(context,
@@ -27,6 +30,7 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 TriangleButton(
+                  size: triangleSize,
                   turns: 2,
                   child: Icon(FontAwesomeIcons.chalkboard),
                   onTap: () => Navigator.push(
@@ -36,6 +40,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 // TriangleButton(),
                 TriangleButton(
+                  size: triangleSize,
                   turns: 2,
                   onTap: () {},
                   child: Icon(FontAwesomeIcons.trophy),
