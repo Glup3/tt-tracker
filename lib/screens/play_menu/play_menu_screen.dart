@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tt_tracker/screens/select_player/select_player_screen.dart';
 import 'package:tt_tracker/theme/custom_theme.dart';
 import 'package:tt_tracker/widgets/default_app_bar.dart';
 import 'package:tt_tracker/widgets/dialogs/confirmation_dialog.dart';
@@ -28,9 +29,10 @@ class PlayMenuScreen extends StatelessWidget {
               size: 180,
               turns: 2,
               child: Icon(FontAwesomeIcons.peopleCarry, size: 50),
-              onTap: () {
-                // TODO select the players
-              },
+              onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => SelectPlayerScreen())),
             ),
             TriangleButton(
               size: 140,
