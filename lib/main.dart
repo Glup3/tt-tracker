@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:tt_tracker/screens/home/home_screen.dart';
+import 'package:tt_tracker/theme/custom_theme.dart';
+import 'package:tt_tracker/widgets/clippers/triangle_clipper.dart';
 
 void main() async {
   await SystemChrome.setPreferredOrientations(
@@ -11,13 +14,12 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return CustomTheme(
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        home: HomeScreen(),
       ),
-      home: HomePage(),
     );
   }
 }
@@ -91,16 +93,25 @@ class _HomePageState extends State<HomePage> {
                   width: 50,
                   color: Colors.purple,
                 ),
-                feedback: Container(
-                  height: 50,
-                  width: 50,
-                  color: Colors.blue[200],
+                feedback: ClipPath(
+                  child: Container(
+                    height: 50,
+                    width: 50,
+                    color: Colors.blue[200],
+                  ),
+                  clipper: TriangleClipper(),
                 ),
-                childWhenDragging: Container(
-                  height: 100,
-                  width: 100,
-                  color: Colors.white,
-                  child: Icon(Icons.cancel, color: Colors.red),
+                childWhenDragging: RotatedBox(
+                  quarterTurns: 2,
+                  child: ClipPath(
+                    child: Container(
+                      height: 50,
+                      width: 50,
+                      color: Colors.white,
+                      child: Icon(Icons.cancel, color: Colors.red),
+                    ),
+                    clipper: TriangleClipper(),
+                  ),
                 ),
               ),
             ),
