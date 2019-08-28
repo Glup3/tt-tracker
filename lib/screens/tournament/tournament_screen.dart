@@ -9,7 +9,7 @@ class TournamentScreen extends StatelessWidget {
     {'name': 'Simon', 'points': 2},
     {'name': 'Stefan', 'points': 1},
     {'name': 'Thomas', 'points': 0},
-    {'name': 'Sean', 'points': 7},
+    {'name': 'Sean', 'points': 6},
     {'name': 'Alex', 'points': 3},
     {'name': 'Carina', 'points': 2},
     {'name': 'Niq', 'points': 0},
@@ -32,43 +32,45 @@ class TournamentScreen extends StatelessWidget {
           itemBuilder: (context, index) {
             var entry = data[index];
 
-            return Padding(
-              padding: const EdgeInsets.only(right: 20),
-              child: GestureDetector(
-                onTap: () {
-                  print(entry['name']);
-                  // TODO open dialog --> add point confirmation
-                },
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      entry['name'],
-                      style: TextStyle(
-                        color: CustomTheme.of(context).onBackgroundColor,
-                        fontSize: fontSize,
+            return SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(right: 20),
+                child: GestureDetector(
+                  onTap: () {
+                    print(entry['name']);
+                    // TODO open dialog --> add point confirmation
+                  },
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        entry['name'],
+                        style: TextStyle(
+                          color: CustomTheme.of(context).onBackgroundColor,
+                          fontSize: fontSize,
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 10),
-                    Column(
-                      children: List.generate(entry['points'], (index) {
-                        return Container(
-                          height: 20,
-                          width: 5,
-                          color: entry['points'] < 5
-                              ? CustomTheme.of(context).onBackgroundColor
-                              : CustomTheme.of(context).primaryColor1,
-                        );
-                      }).toList(),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      entry['points'].toString(),
-                      style: TextStyle(
-                        color: CustomTheme.of(context).onBackgroundColor,
-                        fontSize: fontSize,
+                      SizedBox(height: 10),
+                      Column(
+                        children: List.generate(entry['points'], (index) {
+                          return Container(
+                            height: 20,
+                            width: 5,
+                            color: entry['points'] < 5
+                                ? CustomTheme.of(context).onBackgroundColor
+                                : CustomTheme.of(context).primaryColor1,
+                          );
+                        }).toList(),
                       ),
-                    ),
-                  ],
+                      SizedBox(height: 10),
+                      Text(
+                        entry['points'].toString(),
+                        style: TextStyle(
+                          color: CustomTheme.of(context).onBackgroundColor,
+                          fontSize: fontSize,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             );
