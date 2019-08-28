@@ -59,6 +59,9 @@ class _CustomThemeState extends State<CustomTheme> {
   /// #000000
   Color get onErrorColor => Color(0xFF000000);
 
+  /// #C2C2C2
+  Color get hintColor => Color(0xFFC2C2C2);
+
   @override
   Widget build(BuildContext context) {
     return new _InheritedStateContainer(
