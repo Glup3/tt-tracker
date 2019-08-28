@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tt_tracker/screens/match/match_screen.dart';
 import 'package:tt_tracker/theme/custom_theme.dart';
 import 'package:tt_tracker/widgets/default_app_bar.dart';
 import 'package:tt_tracker/widgets/styled_dropdown_button.dart';
@@ -77,6 +78,14 @@ class _SelectPlayerScreenState extends State<SelectPlayerScreen> {
       return;
     }
 
-    // TODO next screen
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MatchScreen(
+          player1: player1,
+          player2: player2,
+        ),
+      ),
+    );
   }
 }
